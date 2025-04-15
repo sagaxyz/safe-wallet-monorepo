@@ -1,0 +1,144 @@
+diff --git a/src/assets/v1.4.1/compatibility_fallback_handler.json b/src/assets/v1.4.1/compatibility_fallback_handler.json
+index 10ed5da6f9f6a8e8d1da12af6d1f57a255d96785..a1292133182d8d7119a71e34abe014535d1c3422 100644
+--- a/src/assets/v1.4.1/compatibility_fallback_handler.json
++++ b/src/assets/v1.4.1/compatibility_fallback_handler.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/create_call.json b/src/assets/v1.4.1/create_call.json
+index 0751bb8b834707c070bfc90d066f93c04890f865..c2d5d8f0d710119381a1c261b2d26d52a97f6fca 100644
+--- a/src/assets/v1.4.1/create_call.json
++++ b/src/assets/v1.4.1/create_call.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/multi_send.json b/src/assets/v1.4.1/multi_send.json
+index 4f96d01f1a7823a1102ae7bdb7e9c08f2aabeef9..b1f21ba54fdf7a437c78e149d76d79a8a81b24b9 100644
+--- a/src/assets/v1.4.1/multi_send.json
++++ b/src/assets/v1.4.1/multi_send.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/multi_send_call_only.json b/src/assets/v1.4.1/multi_send_call_only.json
+index 0873ee03ed5de186cc4c87b2d9143a436a4fb465..6cda6cb695bad18b2b3ce8ff2fc7f299d363b217 100644
+--- a/src/assets/v1.4.1/multi_send_call_only.json
++++ b/src/assets/v1.4.1/multi_send_call_only.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/safe.json b/src/assets/v1.4.1/safe.json
+index e706fcc799897f73fce3abf009225377d1e45905..d40313d9dcc1405d2f5daf0c3f44115be958d556 100644
+--- a/src/assets/v1.4.1/safe.json
++++ b/src/assets/v1.4.1/safe.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/safe_l2.json b/src/assets/v1.4.1/safe_l2.json
+index a4e33ec6c7f50f17055bffddecc62a9de5e9d623..465f32dfb67bcd30cc008acf480276f75462dba1 100644
+--- a/src/assets/v1.4.1/safe_l2.json
++++ b/src/assets/v1.4.1/safe_l2.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/safe_migration.json b/src/assets/v1.4.1/safe_migration.json
+index 3ef9c341e9b20fb4ef3b86edc95d1e4af89e5b46..01065dcf2c4fff0bbace634bc926a31aa92dd2a9 100644
+--- a/src/assets/v1.4.1/safe_migration.json
++++ b/src/assets/v1.4.1/safe_migration.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "10": "canonical",
+     "56": "canonical",
+diff --git a/src/assets/v1.4.1/safe_proxy_factory.json b/src/assets/v1.4.1/safe_proxy_factory.json
+index 47b8086de6cc7e086e8e81fef41cc221f6d2394f..dcd31e3d1d1f4d066fe7f724471ebb7e4196375e 100644
+--- a/src/assets/v1.4.1/safe_proxy_factory.json
++++ b/src/assets/v1.4.1/safe_proxy_factory.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/safe_to_l2_migration.json b/src/assets/v1.4.1/safe_to_l2_migration.json
+index 4cd78710bea0d158f86700c731eac2744a5b5c2f..559f2fdb9d14b9807abb0d38fc435e51f67cabfd 100644
+--- a/src/assets/v1.4.1/safe_to_l2_migration.json
++++ b/src/assets/v1.4.1/safe_to_l2_migration.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "10": "canonical",
+     "56": "canonical",
+diff --git a/src/assets/v1.4.1/safe_to_l2_setup.json b/src/assets/v1.4.1/safe_to_l2_setup.json
+index baaad9b41e6642364e4aeffec37181ebdce3d588..da1025b69a6ad092975d417a5ced1e1b5be9aba1 100644
+--- a/src/assets/v1.4.1/safe_to_l2_setup.json
++++ b/src/assets/v1.4.1/safe_to_l2_setup.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "10": "canonical",
+     "56": "canonical",
+diff --git a/src/assets/v1.4.1/sign_message_lib.json b/src/assets/v1.4.1/sign_message_lib.json
+index 893459f717add65976c13a05353e3ef6a4ffd963..81255f982c954b43aee6eca868911fd8b67f1752 100644
+--- a/src/assets/v1.4.1/sign_message_lib.json
++++ b/src/assets/v1.4.1/sign_message_lib.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
+diff --git a/src/assets/v1.4.1/simulate_tx_accessor.json b/src/assets/v1.4.1/simulate_tx_accessor.json
+index 6dfa430ab1714bfe2cdded1940d1d98417931b31..58029f05fab75aa8999fcd584041764c0dfebeee 100644
+--- a/src/assets/v1.4.1/simulate_tx_accessor.json
++++ b/src/assets/v1.4.1/simulate_tx_accessor.json
+@@ -9,6 +9,7 @@
+     }
+   },
+   "networkAddresses": {
++    "5464": "canonical",
+     "1": "canonical",
+     "5": "canonical",
+     "10": "canonical",
