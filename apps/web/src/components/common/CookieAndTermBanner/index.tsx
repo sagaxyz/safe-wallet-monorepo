@@ -22,7 +22,7 @@ import ExternalLink from '../ExternalLink'
 const COOKIE_AND_TERM_WARNING: Record<CookieAndTermType, string> = {
   [CookieAndTermType.TERMS]: '',
   [CookieAndTermType.NECESSARY]: '',
-  [CookieAndTermType.UPDATES]: `You attempted to open the "What's new" section but need to accept the "Beamer" cookies first.`,
+  [CookieAndTermType.UPDATES]: ``,
   [CookieAndTermType.ANALYTICS]: '',
 }
 
@@ -47,7 +47,7 @@ export const CookieAndTermBanner = ({
   const dispatch = useAppDispatch()
   const cookies = useAppSelector(selectCookies)
 
-  const { register, watch, getValues, setValue } = useForm({
+  const { getValues } = useForm({
     defaultValues: {
       [CookieAndTermType.TERMS]: true,
       [CookieAndTermType.NECESSARY]: true,
@@ -66,12 +66,6 @@ export const CookieAndTermBanner = ({
       }),
     )
     dispatch(closeCookieBanner())
-  }
-
-  const handleAcceptAll = () => {
-    setValue(CookieAndTermType.UPDATES, true)
-    setValue(CookieAndTermType.ANALYTICS, true)
-    setTimeout(handleAccept, 300)
   }
 
   return (
@@ -103,9 +97,7 @@ export const CookieAndTermBanner = ({
               }}
             >
               By browsing this page, you accept our{' '}
-              <ExternalLink href={AppRoutes.terms}>Terms & Conditions</ExternalLink> (last updated{' '}
-              {metadata.lastUpdated}) and the use of necessary cookies. By clicking &quot;Accept all&quot; you
-              additionally agree to the use of Beamer and Analytics cookies as listed below.{' '}
+              <ExternalLink href={AppRoutes.terms}>Terms & Conditions</ExternalLink> and the use of necessary cookies.{' '}
               <ExternalLink href={AppRoutes.cookie}>Cookie policy</ExternalLink>
             </Typography>
 
@@ -126,32 +118,6 @@ export const CookieAndTermBanner = ({
                   <br />
                   <Typography variant="body2">Locally stored data for core functionality</Typography>
                 </Box>
-
-                <Box
-                  sx={{
-                    mb: 2,
-                  }}
-                >
-                  <CookieCheckbox
-                    checkboxProps={{ ...register(CookieAndTermType.UPDATES), id: 'beamer' }}
-                    label="Beamer"
-                    checked={watch(CookieAndTermType.UPDATES)}
-                  />
-                  <br />
-                  <Typography variant="body2">New features and product announcements</Typography>
-                </Box>
-
-                <Box>
-                  <CookieCheckbox
-                    checkboxProps={{ ...register(CookieAndTermType.ANALYTICS), id: 'ga' }}
-                    label="Analytics"
-                    checked={watch(CookieAndTermType.ANALYTICS)}
-                  />
-                  <br />
-                  <Typography variant="body2">
-                    Opt in for Google Analytics cookies to help us analyze app usage patterns.
-                  </Typography>
-                </Box>
               </Grid>
             </Grid>
 
@@ -170,12 +136,6 @@ export const CookieAndTermBanner = ({
                     Save settings
                   </Button>
                 </Typography>
-              </Grid>
-
-              <Grid item>
-                <Button onClick={handleAcceptAll} variant="contained" color="secondary" size="small" disableElevation>
-                  Accept all
-                </Button>
               </Grid>
             </Grid>
           </Grid>

@@ -186,6 +186,10 @@ export const OVERVIEW_EVENTS = {
     action: 'Staking banner learn more',
     category: OVERVIEW_CATEGORY,
   },
+  SUGGESTIONS: {
+    action: 'Suggest any new Feature',
+    category: OVERVIEW_CATEGORY,
+  },
 }
 
 export enum PIN_SAFE_LABELS {
