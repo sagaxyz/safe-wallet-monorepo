@@ -8,9 +8,8 @@ import {
   SidebarListItemText,
 } from '@/components/sidebar/SidebarList'
 import { BEAMER_SELECTOR, loadBeamer } from '@/services/beamer'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
-import { openCookieBanner } from '@/store/popupSlice'
 import { Link, ListItem, SvgIcon, Typography } from '@mui/material'
 import DebugToggle from '../DebugToggle'
 import { IS_PRODUCTION, NEW_SUGGESTION_FORM } from '@/config/constants'
@@ -22,7 +21,6 @@ import SuggestionIcon from '@/public/images/lightbulb_icon.svg'
 import darkPalette from '@/components/theme/darkPalette'
 
 const SidebarFooter = (): ReactElement => {
-  const dispatch = useAppDispatch()
   const chain = useCurrentChain()
   const hasBeamerConsent = useAppSelector((state) => hasConsentFor(state, CookieAndTermType.UPDATES))
 
@@ -32,12 +30,6 @@ const SidebarFooter = (): ReactElement => {
       loadBeamer(chain.shortName)
     }
   }, [hasBeamerConsent, chain?.shortName])
-
-  const handleBeamer = () => {
-    if (!hasBeamerConsent) {
-      dispatch(openCookieBanner({ warningKey: CookieAndTermType.UPDATES }))
-    }
-  }
 
   return (
     <SidebarList>
