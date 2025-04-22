@@ -69,7 +69,7 @@ export enum SafeAppsTag {
 }
 
 // Help Center
-export const HELP_CENTER_URL = 'https://safe-support.protofire.io'
+export const HELP_CENTER_URL = 'https://help.safe.global'
 export const HelpCenterArticle = {
   ADDRESS_BOOK_DATA: `${HELP_CENTER_URL}/en/articles/40811-address-book-export-and-import`,
   ADVANCED_PARAMS: `${HELP_CENTER_URL}/en/articles/40837-advanced-transaction-parameters`,
@@ -102,7 +102,7 @@ export const DISCORD_URL = 'https://chat.safe.global'
 export const TWITTER_URL = 'https://twitter.com/safe'
 
 // Legal
-export const IS_OFFICIAL_HOST = process.env.NEXT_PUBLIC_IS_OFFICIAL_HOST === 'true'
+export const IS_OFFICIAL_HOST = true
 export const OFFICIAL_HOSTS = /app\.safe\.global|.+\.5afe\.dev|localhost:3000/
 export const BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || (IS_OFFICIAL_HOST ? 'Saga Safe' : 'Saga Safe')
 export const BRAND_LOGO = process.env.NEXT_PUBLIC_BRAND_LOGO || ''
@@ -118,3 +118,14 @@ export const SAFE_PASS_URL = 'community.safe.global'
 export const ECOSYSTEM_ID_ADDRESS =
   process.env.NEXT_PUBLIC_ECOSYSTEM_ID_ADDRESS || '0x0000000000000000000000000000000000000000'
 export const MULTICHAIN_HELP_ARTICLE = `${HELP_CENTER_URL}/en/articles/222612-multi-chain-safe`
+
+// Page Contents
+export const TERMS_LINK =
+  process.env.NEXT_PUBLIC_TERMS_LINK ||
+  'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/terms.md'
+export const COOKIE_LINK =
+  process.env.NEXT_PUBLIC_COOKIE_LINK ||
+  'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/cookie.md'
+export const IMPRINT_LINK =
+  process.env.NEXT_PUBLIC_IMPRINT_LINK ||
+  'https://raw.githubusercontent.com/protofire/safe-legal/refs/heads/main/imprint.md'
