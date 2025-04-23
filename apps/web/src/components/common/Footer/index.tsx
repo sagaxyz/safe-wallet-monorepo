@@ -10,7 +10,6 @@ import Link from 'next/link'
 import ExternalLink from '../ExternalLink'
 import packageJson from '../../../../package.json'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import { HELP_CENTER_URL } from '@/config/constants'
 
 const footerPages = [
   AppRoutes.welcome.index,
@@ -53,7 +52,7 @@ const Footer = (): ReactElement | null => {
           <FooterLink href={getHref(AppRoutes.cookie)}>Cookie policy</FooterLink>
         </li>
         <li>
-          <ExternalLink href={HELP_CENTER_URL} noIcon sx={{ span: { textDecoration: 'underline' } }}>
+          <ExternalLink href="https://safe-support.protofire.io" noIcon sx={{ span: { textDecoration: 'underline' } }}>
             Help
           </ExternalLink>
         </li>
