@@ -1,7 +1,12 @@
 import type { ReactElement } from 'react'
 import { useEffect } from 'react'
 
-import { SidebarList, SidebarListItemText } from '@/components/sidebar/SidebarList'
+import {
+  SidebarList,
+  SidebarListItemButton,
+  SidebarListItemIcon,
+  SidebarListItemText,
+} from '@/components/sidebar/SidebarList'
 import { loadBeamer } from '@/services/beamer'
 import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
@@ -10,7 +15,10 @@ import DebugToggle from '../DebugToggle'
 import { IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
 import ProtofireLogo from '@/public/images/protofire-logo.svg'
+import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import darkPalette from '@/components/theme/darkPalette'
+import Track from '@/components/common/Track'
+import { OVERVIEW_EVENTS } from '@/services/analytics'
 
 const SidebarFooter = (): ReactElement => {
   const chain = useCurrentChain()
@@ -30,6 +38,25 @@ const SidebarFooter = (): ReactElement => {
           <DebugToggle />
         </ListItem>
       )}
+      <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
+        <ListItem disablePadding>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://safe-support.protofire.io"
+            style={{ width: '100%' }}
+          >
+            <SidebarListItemButton>
+              <SidebarListItemIcon color="primary">
+                <HelpCenterIcon />
+              </SidebarListItemIcon>
+              <SidebarListItemText data-testid="list-item-need-help" bold>
+                Need help?
+              </SidebarListItemText>
+            </SidebarListItemButton>
+          </a>
+        </ListItem>
+      </Track>
       <ListItem>
         <SidebarListItemText>
           <Typography variant="caption">
