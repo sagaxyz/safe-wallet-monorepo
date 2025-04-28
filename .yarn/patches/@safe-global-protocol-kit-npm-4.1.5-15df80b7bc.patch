@@ -1,3 +1,321 @@
+diff --git a/dist/src/contracts/BaseContract.js b/dist/src/contracts/BaseContract.js
+index cf9e599fa83d3539bc056a69760d4eaa6f85622a..d3a6816a830ccb5e490f1708d46646e3f9b556df 100644
+--- a/dist/src/contracts/BaseContract.js
++++ b/dist/src/contracts/BaseContract.js
+@@ -1,7 +1,7 @@
+-"use strict";
+-Object.defineProperty(exports, "__esModule", { value: true });
+-const ethers_1 = require("ethers");
+-const config_1 = require("../contracts/config");
++'use strict';
++Object.defineProperty(exports, '__esModule', { value: true });
++const ethers_1 = require('ethers');
++const config_1 = require('../contracts/config');
+ /**
+  * Abstract class BaseContract
+  * It is designed to be instantiated for different contracts.
+@@ -18,49 +18,62 @@ const config_1 = require("../contracts/config");
+  * - SafeProxyFactoryBaseContract<SafeProxyFactoryContractAbiType> extends BaseContract<SafeProxyFactoryContractAbiType>
+  */
+ class BaseContract {
+-    /**
+-     * @constructor
+-     * Constructs an instance of BaseContract.
+-     *
+-     * @param contractName - The contract name.
+-     * @param chainId - The chain ID of the contract.
+-     * @param safeProvider - An instance of SafeProvider.
+-     * @param defaultAbi - The default ABI for the contract. It should be compatible with the specific version of the contract.
+-     * @param safeVersion - The version of the Safe contract.
+-     * @param customContractAddress - Optional custom address for the contract. If not provided, the address is derived from the Safe deployments based on the chainId and safeVersion.
+-     * @param customContractAbi - Optional custom ABI for the contract. If not provided, the ABI is derived from the Safe deployments or the defaultAbi is used.
+-     */
+-    constructor(contractName, chainId, safeProvider, defaultAbi, safeVersion, customContractAddress, customContractAbi, runner) {
+-        this.getAddress = () => {
+-            return this.contract.getAddress();
+-        };
+-        this.encode = (functionToEncode, args) => {
+-            return this.contract.interface.encodeFunctionData(functionToEncode, args);
+-        };
+-        this.estimateGas = (functionToEstimate, args, options = {}) => {
+-            const contractMethodToEstimate = this.contract.getFunction(functionToEstimate);
+-            return contractMethodToEstimate.estimateGas(...args, options);
+-        };
+-        const deployment = (0, config_1.getContractDeployment)(safeVersion, chainId, contractName);
+-        const contractAddress = customContractAddress ||
+-            deployment?.networkAddresses[chainId.toString()] ||
+-            deployment?.defaultAddress;
+-        if (!contractAddress) {
+-            throw new Error(`Invalid ${contractName.replace('Version', '')} contract address`);
+-        }
+-        this.contractName = contractName;
+-        this.safeVersion = safeVersion;
+-        this.contractAddress = contractAddress;
+-        this.contractAbi =
+-            customContractAbi ||
+-                deployment?.abi || // this cast is required because abi is set as any[] in safe-deployments
+-                defaultAbi; // if no customAbi and no abi is present in the safe-deployments we use our hardcoded abi
+-        this.runner = runner || safeProvider.getExternalProvider();
+-        this.safeProvider = safeProvider;
+-    }
+-    async init() {
+-        this.contract = new ethers_1.Contract(this.contractAddress, this.contractAbi, (await this.safeProvider.getExternalSigner()) || this.runner);
++  /**
++   * @constructor
++   * Constructs an instance of BaseContract.
++   *
++   * @param contractName - The contract name.
++   * @param chainId - The chain ID of the contract.
++   * @param safeProvider - An instance of SafeProvider.
++   * @param defaultAbi - The default ABI for the contract. It should be compatible with the specific version of the contract.
++   * @param safeVersion - The version of the Safe contract.
++   * @param customContractAddress - Optional custom address for the contract. If not provided, the address is derived from the Safe deployments based on the chainId and safeVersion.
++   * @param customContractAbi - Optional custom ABI for the contract. If not provided, the ABI is derived from the Safe deployments or the defaultAbi is used.
++   */
++  constructor(
++    contractName,
++    chainId,
++    safeProvider,
++    defaultAbi,
++    safeVersion,
++    customContractAddress,
++    customContractAbi,
++    runner
++  ) {
++    this.getAddress = () => {
++      return this.contract.getAddress();
++    };
++    this.encode = (functionToEncode, args) => {
++      return this.contract.interface.encodeFunctionData(functionToEncode, args);
++    };
++    this.estimateGas = (functionToEstimate, args, options = {}) => {
++      const contractMethodToEstimate = this.contract.getFunction(functionToEstimate);
++      return contractMethodToEstimate.estimateGas(...args, options);
++    };
++    const deployment = (0, config_1.getContractDeployment)(safeVersion, chainId, contractName);
++
++    const contractAddress =
++      customContractAddress || deployment?.networkAddresses[chainId.toString()] || deployment?.defaultAddress;
++    if (!contractAddress) {
++      throw new Error(`Invalid ${contractName.replace('Version', '')} contract address`);
+     }
++    this.contractName = contractName;
++    this.safeVersion = safeVersion;
++    this.contractAddress = contractAddress;
++    this.contractAbi =
++      customContractAbi ||
++      deployment?.abi || // this cast is required because abi is set as any[] in safe-deployments
++      defaultAbi; // if no customAbi and no abi is present in the safe-deployments we use our hardcoded abi
++    this.runner = runner || safeProvider.getExternalProvider();
++    this.safeProvider = safeProvider;
++  }
++  async init() {
++    this.contract = new ethers_1.Contract(
++      this.contractAddress,
++      this.contractAbi,
++      (await this.safeProvider.getExternalSigner()) || this.runner
++    );
++  }
+ }
+ exports.default = BaseContract;
+ //# sourceMappingURL=BaseContract.js.map
+diff --git a/dist/src/contracts/config.js b/dist/src/contracts/config.js
+index 5e0bc7420a888cb3176d9d8cbb1f770909dcd787..3d937342eb3faea130b717a6aeb399b93135a7f9 100644
+--- a/dist/src/contracts/config.js
++++ b/dist/src/contracts/config.js
+@@ -1,99 +1,104 @@
+-"use strict";
+-Object.defineProperty(exports, "__esModule", { value: true });
+-exports.getContractDeployment = exports.safeDeploymentsL1ChainIds = exports.safeDeploymentsVersions = exports.SAFE_BASE_VERSION = exports.DEFAULT_SAFE_VERSION = void 0;
+-const safe_deployments_1 = require("@safe-global/safe-deployments");
+-const safe_modules_deployments_1 = require("@safe-global/safe-modules-deployments");
+-exports.DEFAULT_SAFE_VERSION = '1.3.0';
++'use strict';
++Object.defineProperty(exports, '__esModule', { value: true });
++exports.getContractDeployment =
++  exports.safeDeploymentsL1ChainIds =
++  exports.safeDeploymentsVersions =
++  exports.SAFE_BASE_VERSION =
++  exports.DEFAULT_SAFE_VERSION =
++    void 0;
++const safe_deployments_1 = require('@safe-global/safe-deployments');
++const safe_modules_deployments_1 = require('@safe-global/safe-modules-deployments');
++exports.DEFAULT_SAFE_VERSION = '1.4.1';
+ exports.SAFE_BASE_VERSION = '1.0.0';
+ exports.safeDeploymentsVersions = {
+-    '1.4.1': {
+-        safeSingletonVersion: '1.4.1',
+-        safeSingletonL2Version: '1.4.1',
+-        safeProxyFactoryVersion: '1.4.1',
+-        compatibilityFallbackHandler: '1.4.1',
+-        multiSendVersion: '1.4.1',
+-        multiSendCallOnlyVersion: '1.4.1',
+-        signMessageLibVersion: '1.4.1',
+-        createCallVersion: '1.4.1',
+-        simulateTxAccessorVersion: '1.4.1',
+-        safeWebAuthnSignerFactoryVersion: '0.2.1',
+-        safeWebAuthnSharedSignerVersion: '0.2.1'
+-    },
+-    '1.3.0': {
+-        safeSingletonVersion: '1.3.0',
+-        safeSingletonL2Version: '1.3.0',
+-        safeProxyFactoryVersion: '1.3.0',
+-        compatibilityFallbackHandler: '1.3.0',
+-        multiSendVersion: '1.3.0',
+-        multiSendCallOnlyVersion: '1.3.0',
+-        signMessageLibVersion: '1.3.0',
+-        createCallVersion: '1.3.0',
+-        simulateTxAccessorVersion: '1.3.0',
+-        safeWebAuthnSignerFactoryVersion: '0.2.1',
+-        safeWebAuthnSharedSignerVersion: '0.2.1'
+-    },
+-    '1.2.0': {
+-        safeSingletonVersion: '1.2.0',
+-        safeSingletonL2Version: undefined,
+-        safeProxyFactoryVersion: '1.1.1',
+-        compatibilityFallbackHandler: '1.3.0',
+-        multiSendVersion: '1.1.1',
+-        multiSendCallOnlyVersion: '1.3.0',
+-        signMessageLibVersion: '1.3.0',
+-        createCallVersion: '1.3.0',
+-        safeWebAuthnSignerFactoryVersion: '0.2.1',
+-        safeWebAuthnSharedSignerVersion: '0.2.1'
+-    },
+-    '1.1.1': {
+-        safeSingletonVersion: '1.1.1',
+-        safeSingletonL2Version: undefined,
+-        safeProxyFactoryVersion: '1.1.1',
+-        compatibilityFallbackHandler: '1.3.0',
+-        multiSendVersion: '1.1.1',
+-        multiSendCallOnlyVersion: '1.3.0',
+-        signMessageLibVersion: '1.3.0',
+-        createCallVersion: '1.3.0',
+-        safeWebAuthnSignerFactoryVersion: '0.2.1',
+-        safeWebAuthnSharedSignerVersion: '0.2.1'
+-    },
+-    '1.0.0': {
+-        safeSingletonVersion: '1.0.0',
+-        safeSingletonL2Version: undefined,
+-        safeProxyFactoryVersion: '1.0.0',
+-        compatibilityFallbackHandler: '1.3.0',
+-        multiSendVersion: '1.1.1',
+-        multiSendCallOnlyVersion: '1.3.0',
+-        signMessageLibVersion: '1.3.0',
+-        createCallVersion: '1.3.0',
+-        safeWebAuthnSignerFactoryVersion: '0.2.1',
+-        safeWebAuthnSharedSignerVersion: '0.2.1'
+-    }
++  '1.4.1': {
++    safeSingletonVersion: '1.4.1',
++    safeSingletonL2Version: '1.4.1',
++    safeProxyFactoryVersion: '1.4.1',
++    compatibilityFallbackHandler: '1.4.1',
++    multiSendVersion: '1.4.1',
++    multiSendCallOnlyVersion: '1.4.1',
++    signMessageLibVersion: '1.4.1',
++    createCallVersion: '1.4.1',
++    simulateTxAccessorVersion: '1.4.1',
++    safeWebAuthnSignerFactoryVersion: '0.2.1',
++    safeWebAuthnSharedSignerVersion: '0.2.1',
++  },
++  '1.3.0': {
++    safeSingletonVersion: '1.3.0',
++    safeSingletonL2Version: '1.3.0',
++    safeProxyFactoryVersion: '1.3.0',
++    compatibilityFallbackHandler: '1.3.0',
++    multiSendVersion: '1.3.0',
++    multiSendCallOnlyVersion: '1.3.0',
++    signMessageLibVersion: '1.3.0',
++    createCallVersion: '1.3.0',
++    simulateTxAccessorVersion: '1.3.0',
++    safeWebAuthnSignerFactoryVersion: '0.2.1',
++    safeWebAuthnSharedSignerVersion: '0.2.1',
++  },
++  '1.2.0': {
++    safeSingletonVersion: '1.2.0',
++    safeSingletonL2Version: undefined,
++    safeProxyFactoryVersion: '1.1.1',
++    compatibilityFallbackHandler: '1.3.0',
++    multiSendVersion: '1.1.1',
++    multiSendCallOnlyVersion: '1.3.0',
++    signMessageLibVersion: '1.3.0',
++    createCallVersion: '1.3.0',
++    safeWebAuthnSignerFactoryVersion: '0.2.1',
++    safeWebAuthnSharedSignerVersion: '0.2.1',
++  },
++  '1.1.1': {
++    safeSingletonVersion: '1.1.1',
++    safeSingletonL2Version: undefined,
++    safeProxyFactoryVersion: '1.1.1',
++    compatibilityFallbackHandler: '1.3.0',
++    multiSendVersion: '1.1.1',
++    multiSendCallOnlyVersion: '1.3.0',
++    signMessageLibVersion: '1.3.0',
++    createCallVersion: '1.3.0',
++    safeWebAuthnSignerFactoryVersion: '0.2.1',
++    safeWebAuthnSharedSignerVersion: '0.2.1',
++  },
++  '1.0.0': {
++    safeSingletonVersion: '1.0.0',
++    safeSingletonL2Version: undefined,
++    safeProxyFactoryVersion: '1.0.0',
++    compatibilityFallbackHandler: '1.3.0',
++    multiSendVersion: '1.1.1',
++    multiSendCallOnlyVersion: '1.3.0',
++    signMessageLibVersion: '1.3.0',
++    createCallVersion: '1.3.0',
++    safeWebAuthnSignerFactoryVersion: '0.2.1',
++    safeWebAuthnSharedSignerVersion: '0.2.1',
++  },
+ };
+ exports.safeDeploymentsL1ChainIds = [
+-    1n // Ethereum Mainnet
++  1n, // Ethereum Mainnet
+ ];
+ const contractFunctions = {
+-    safeSingletonVersion: safe_deployments_1.getSafeSingletonDeployment,
+-    safeSingletonL2Version: safe_deployments_1.getSafeL2SingletonDeployment,
+-    safeProxyFactoryVersion: safe_deployments_1.getProxyFactoryDeployment,
+-    compatibilityFallbackHandler: safe_deployments_1.getCompatibilityFallbackHandlerDeployment,
+-    multiSendVersion: safe_deployments_1.getMultiSendDeployment,
+-    multiSendCallOnlyVersion: safe_deployments_1.getMultiSendCallOnlyDeployment,
+-    signMessageLibVersion: safe_deployments_1.getSignMessageLibDeployment,
+-    createCallVersion: safe_deployments_1.getCreateCallDeployment,
+-    simulateTxAccessorVersion: safe_deployments_1.getSimulateTxAccessorDeployment,
+-    safeWebAuthnSignerFactoryVersion: safe_modules_deployments_1.getSafeWebAuthnSignerFactoryDeployment,
+-    safeWebAuthnSharedSignerVersion: safe_modules_deployments_1.getSafeWebAuthnShareSignerDeployment
++  safeSingletonVersion: safe_deployments_1.getSafeSingletonDeployment,
++  safeSingletonL2Version: safe_deployments_1.getSafeL2SingletonDeployment,
++  safeProxyFactoryVersion: safe_deployments_1.getProxyFactoryDeployment,
++  compatibilityFallbackHandler: safe_deployments_1.getCompatibilityFallbackHandlerDeployment,
++  multiSendVersion: safe_deployments_1.getMultiSendDeployment,
++  multiSendCallOnlyVersion: safe_deployments_1.getMultiSendCallOnlyDeployment,
++  signMessageLibVersion: safe_deployments_1.getSignMessageLibDeployment,
++  createCallVersion: safe_deployments_1.getCreateCallDeployment,
++  simulateTxAccessorVersion: safe_deployments_1.getSimulateTxAccessorDeployment,
++  safeWebAuthnSignerFactoryVersion: safe_modules_deployments_1.getSafeWebAuthnSignerFactoryDeployment,
++  safeWebAuthnSharedSignerVersion: safe_modules_deployments_1.getSafeWebAuthnShareSignerDeployment,
+ };
+ function getContractDeployment(safeVersion, chainId, contractName) {
+-    const contractVersion = exports.safeDeploymentsVersions[safeVersion][contractName];
+-    const filters = {
+-        version: contractVersion,
+-        network: chainId.toString(),
+-        released: true
+-    };
+-    const deployment = contractFunctions[contractName](filters);
+-    return deployment;
++  const contractVersion = exports.safeDeploymentsVersions[safeVersion][contractName];
++  const filters = {
++    version: contractVersion,
++    network: chainId.toString(),
++    released: true,
++  };
++  const deployment = contractFunctions[contractName](filters);
++  return deployment;
+ }
+ exports.getContractDeployment = getContractDeployment;
+ //# sourceMappingURL=config.js.map
 diff --git a/dist/src/utils/eip-3770/config.js b/dist/src/utils/eip-3770/config.js
 index 4937a8edcfb3981d3974d2a0fa9bafdb92cde131..49e1cc476a14ca84acb3eac9f76f71f45b96e8bd 100644
 --- a/dist/src/utils/eip-3770/config.js
