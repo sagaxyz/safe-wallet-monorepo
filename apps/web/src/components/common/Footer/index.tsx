@@ -46,6 +46,30 @@ const Footer = (): ReactElement | null => {
     <footer className={css.container}>
       <ul>
         <li>
+          <ExternalLink href="https://www.saga.xyz" noIcon sx={{ span: { textDecoration: 'underline' } }}>
+            Saga
+          </ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://x.com/sagaxyz__" noIcon sx={{ span: { textDecoration: 'underline' } }}>
+            X
+          </ExternalLink>
+        </li>
+        <li>
+          <ExternalLink
+            href="https://www.instagram.com/saga.xyz_"
+            noIcon
+            sx={{ span: { textDecoration: 'underline' } }}
+          >
+            Instagram
+          </ExternalLink>
+        </li>
+        <li>
+          <ExternalLink href="https://www.tiktok.com/@saga.xyz_" noIcon sx={{ span: { textDecoration: 'underline' } }}>
+            TikTok
+          </ExternalLink>
+        </li>
+        <li>
           <FooterLink href={getHref(AppRoutes.terms)}>Terms</FooterLink>
         </li>
         <li>
