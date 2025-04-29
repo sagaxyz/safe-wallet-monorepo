@@ -93,7 +93,7 @@ const useIsValidExecution = (
         safeTx.data.gasToken,
         safeTx.data.refundReceiver,
         encodeSignatures(safeTx, isOwner ? wallet.address : undefined, safeTx.signatures.size < threshold),
-        { from: wallet.address, gasLimit: gasLimit.toString() },
+        { from: wallet.address, gasLimit: null },
       )
     } catch (_err) {
       const err = _err as EthersError
