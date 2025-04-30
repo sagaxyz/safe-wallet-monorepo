@@ -85,7 +85,7 @@ const FirstTxFlow = ({ open, onClose }: { open: boolean; onClose: () => void }) 
         <Grid item>
           <ChoiceButton
             title="Activate Safe now"
-            description="Pay a one-time network fee to deploy your safe onchain"
+            description="Deploy your safe onchain"
             icon={SafeLogo}
             onClick={() => handleClick(onActivateSafe)}
           />

@@ -1,5 +1,5 @@
 import { createNewSafe, relaySafeCreation } from '@/components/new-safe/create/logic'
-import { NetworkFee, SafeSetupOverview } from '@/components/new-safe/create/steps/ReviewStep'
+import { SafeSetupOverview } from '@/components/new-safe/create/steps/ReviewStep'
 import ReviewRow from '@/components/new-safe/ReviewRow'
 import { TxModalContext } from '@/components/tx-flow'
 import TxCard from '@/components/tx-flow/common/TxCard'
@@ -74,7 +74,7 @@ const ActivateAccountFlow = () => {
   const undeployedSafe = useAppSelector((state) => selectUndeployedSafe(state, chainId, safeAddress))
   const { setTxFlow } = useContext(TxModalContext)
   const wallet = useWallet()
-  const { options, totalFee, walletCanPay } = useActivateAccount(undeployedSafe)
+  const { options, walletCanPay } = useActivateAccount(undeployedSafe)
   const isWrongChain = useIsWrongChain()
 
   const undeployedSafeSetup = useMemo(
@@ -178,25 +178,6 @@ const ActivateAccountFlow = () => {
               />
             </Grid>
           )}
-
-          <Grid data-testid="network-fee-section" container spacing={3}>
-            <ReviewRow
-              name="Est. network fee"
-              value={
-                <>
-                  <NetworkFee totalFee={totalFee} isWaived={willRelay || isWrongChain} chain={chain} />
-
-                  {!willRelay && (
-                    <Typography variant="body2" color="text.secondary" mt={1}>
-                      {isWrongChain
-                        ? `Switch your connected wallet to ${chain?.chainName} to see the correct estimated network fee`
-                        : 'You will have to confirm a transaction with your connected wallet.'}
-                    </Typography>
-                  )}
-                </>
-              }
-            />
-          </Grid>
 
           {submitError && (
             <Box mt={1}>
