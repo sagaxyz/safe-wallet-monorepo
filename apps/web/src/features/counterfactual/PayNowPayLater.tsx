@@ -34,6 +34,9 @@ const PayNowPayLater = ({
   payMethod: PayMethod
   setPayMethod: Dispatch<SetStateAction<PayMethod>>
 }) => {
+  // Special case for Saga
+  totalFee = '0'
+
   const chain = useCurrentChain()
 
   const onChoosePayMethod = (_: ChangeEvent<HTMLInputElement>, newPayMethod: string) => {
@@ -47,8 +50,7 @@ const PayNowPayLater = ({
       </Typography>
       {isMultiChain && (
         <ErrorMessage level="info">
-          You will need to <b>activate your account</b> separately on each network. Make sure you have funds on your
-          wallet to pay the network fee.
+          You will need to <b>activate your account</b> separately on each network.
         </ErrorMessage>
       )}
       <List>
@@ -62,28 +64,6 @@ const PayNowPayLater = ({
             </Typography>
           </ListItem>
         )}
-        <ListItem disableGutters>
-          <ListItemIcon className={css.listItem}>
-            <CheckRoundedIcon fontSize="small" color="inherit" />
-          </ListItemIcon>
-          <Typography variant="body2">There will be a one-time activation fee</Typography>
-        </ListItem>
-        {!isMultiChain && (
-          <ListItem disableGutters>
-            <ListItemIcon className={css.listItem}>
-              <CheckRoundedIcon fontSize="small" color="inherit" />
-            </ListItemIcon>
-            <Typography variant="body2">
-              If you choose to pay later, the fee will be included with the first transaction you make.
-            </Typography>
-          </ListItem>
-        )}
-        <ListItem disableGutters>
-          <ListItemIcon className={css.listItem}>
-            <CheckRoundedIcon fontSize="small" color="inherit" />
-          </ListItemIcon>
-          <Typography variant="body2">Safe doesn&apos;t profit from the fees.</Typography>
-        </ListItem>
       </List>
       {!isMultiChain && (
         <FormControl fullWidth>
@@ -95,13 +75,13 @@ const PayNowPayLater = ({
               className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayNow })}
               label={
                 <>
-                  <Typography className={css.radioTitle}>Pay now</Typography>
+                  <Typography className={css.radioTitle}>Activate now</Typography>
                   <Typography className={css.radioSubtitle} variant="body2" color="text.secondary">
                     {canRelay ? (
                       'Sponsored free transaction'
                     ) : (
                       <>
-                        &asymp; {totalFee} {chain?.nativeCurrency.symbol}
+                        {totalFee} {chain?.nativeCurrency.symbol}
                       </>
                     )}
                   </Typography>
@@ -117,7 +97,7 @@ const PayNowPayLater = ({
               className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayLater })}
               label={
                 <>
-                  <Typography className={css.radioTitle}>Pay later</Typography>
+                  <Typography className={css.radioTitle}>Activate later</Typography>
                   <Typography className={css.radioSubtitle} variant="body2" color="text.secondary">
                     with the first transaction
                   </Typography>

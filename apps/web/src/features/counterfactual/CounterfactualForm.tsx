@@ -1,7 +1,6 @@
 import { TxModalContext } from '@/components/tx-flow'
 import useDeployGasLimit from '@/features/counterfactual/hooks/useDeployGasLimit'
 import { deploySafeAndExecuteTx } from '@/features/counterfactual/utils'
-import { getTotalFeeFormatted } from '@/hooks/useGasPrice'
 import useSafeInfo from '@/hooks/useSafeInfo'
 import useWalletCanPay from '@/hooks/useWalletCanPay'
 import useWallet from '@/hooks/wallets/useWallet'
@@ -118,18 +117,10 @@ export const CounterfactualForm = ({
           <br />
           <ul style={{ margin: 0, padding: '4px 16px 0' }}>
             <li>
-              Base fee: &asymp;{' '}
-              <strong>
-                {getTotalFeeFormatted(advancedParams.maxFeePerGas, BigInt(gasLimit?.safeTxGas || '0'), chain)}{' '}
-                {chain?.nativeCurrency.symbol}
-              </strong>
+              Base fee: &asymp; <strong>0 {chain?.nativeCurrency.symbol}</strong>
             </li>
             <li>
-              One-time activation fee: &asymp;{' '}
-              <strong>
-                {getTotalFeeFormatted(advancedParams.maxFeePerGas, BigInt(gasLimit?.safeDeploymentGas || '0'), chain)}{' '}
-                {chain?.nativeCurrency.symbol}
-              </strong>
+              One-time activation fee: &asymp; <strong>0 {chain?.nativeCurrency.symbol}</strong>
             </li>
           </ul>
         </Alert>
