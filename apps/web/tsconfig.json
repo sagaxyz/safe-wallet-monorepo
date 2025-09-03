@@ -22,7 +22,8 @@
       "@cowprotocol/app-data": ["../../node_modules/@cowprotocol/app-data"],
       "@/public/*": ["./public/*"],
       "@safe-global/store/*": ["../../packages/store/src/*"],
-      "react": ["./node_modules/@types/react"]
+      "react": ["./node_modules/@types/react"],
+      "@safe-global/utils/*": ["../../packages/utils/src/*"]
     },
     "plugins": [
       {

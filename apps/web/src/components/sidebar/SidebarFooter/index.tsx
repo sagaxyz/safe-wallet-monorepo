@@ -10,7 +10,7 @@ import {
 import { loadBeamer } from '@/services/beamer'
 import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
-import { Link, ListItem, SvgIcon, Typography } from '@mui/material'
+import { Divider, Link, ListItem, SvgIcon, Typography } from '@mui/material'
 import DebugToggle from '../DebugToggle'
 import { IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
@@ -34,9 +34,13 @@ const SidebarFooter = (): ReactElement => {
   return (
     <SidebarList>
       {!IS_PRODUCTION && (
-        <ListItem disablePadding>
-          <DebugToggle />
-        </ListItem>
+        <>
+          <ListItem disablePadding>
+            <DebugToggle />
+          </ListItem>
+
+          <Divider flexItem />
+        </>
       )}
       <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
         <ListItem disablePadding>
@@ -74,6 +78,25 @@ const SidebarFooter = (): ReactElement => {
         </SidebarListItemText>
       </ListItem>
     </SidebarList>
+
+      // <Stack direction="row" alignItems="center" spacing={1} my={0.5} mx={1}>
+      //   <IndexingStatus />
+
+      //   <Box ml="auto !important">
+      //     <Track {...OVERVIEW_EVENTS.WHATS_NEW}>
+      //       <IconButton onClick={handleBeamer} id={BEAMER_SELECTOR} data-testid="list-item-whats-new" color="primary">
+      //         <SvgIcon component={BeamerIcon} inheritViewBox fontSize="small" />
+      //       </IconButton>
+      //     </Track>
+      //   </Box>
+
+      //   <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
+      //     <IconButton href={HELP_CENTER_URL} target="_blank" data-testid="list-item-need-help" color="primary">
+      //       <SvgIcon component={HelpCenterIcon} inheritViewBox fontSize="small" />
+      //     </IconButton>
+      //   </Track>
+      // </Stack>
+    // </>
   )
 }
 
