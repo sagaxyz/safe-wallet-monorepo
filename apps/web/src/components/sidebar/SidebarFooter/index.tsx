@@ -79,23 +79,23 @@ const SidebarFooter = (): ReactElement => {
       </ListItem>
     </SidebarList>
 
-      // <Stack direction="row" alignItems="center" spacing={1} my={0.5} mx={1}>
-      //   <IndexingStatus />
+    // <Stack direction="row" alignItems="center" spacing={1} my={0.5} mx={1}>
+    //   <IndexingStatus />
 
-      //   <Box ml="auto !important">
-      //     <Track {...OVERVIEW_EVENTS.WHATS_NEW}>
-      //       <IconButton onClick={handleBeamer} id={BEAMER_SELECTOR} data-testid="list-item-whats-new" color="primary">
-      //         <SvgIcon component={BeamerIcon} inheritViewBox fontSize="small" />
-      //       </IconButton>
-      //     </Track>
-      //   </Box>
+    //   <Box ml="auto !important">
+    //     <Track {...OVERVIEW_EVENTS.WHATS_NEW}>
+    //       <IconButton onClick={handleBeamer} id={BEAMER_SELECTOR} data-testid="list-item-whats-new" color="primary">
+    //         <SvgIcon component={BeamerIcon} inheritViewBox fontSize="small" />
+    //       </IconButton>
+    //     </Track>
+    //   </Box>
 
-      //   <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
-      //     <IconButton href={HELP_CENTER_URL} target="_blank" data-testid="list-item-need-help" color="primary">
-      //       <SvgIcon component={HelpCenterIcon} inheritViewBox fontSize="small" />
-      //     </IconButton>
-      //   </Track>
-      // </Stack>
+    //   <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
+    //     <IconButton href={HELP_CENTER_URL} target="_blank" data-testid="list-item-need-help" color="primary">
+    //       <SvgIcon component={HelpCenterIcon} inheritViewBox fontSize="small" />
+    //     </IconButton>
+    //   </Track>
+    // </Stack>
     // </>
   )
 }

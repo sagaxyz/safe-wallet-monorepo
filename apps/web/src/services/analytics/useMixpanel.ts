@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from 'react'
 import { useTheme } from '@mui/material/styles'
-import mixpanel from 'mixpanel-browser'
 import {
   mixpanelInit,
   mixpanelSetBlockchainNetwork,
