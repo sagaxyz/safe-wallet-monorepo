@@ -1,0 +1,12 @@
+diff --git a/dist/src/utils/eip-3770/config.js b/dist/src/utils/eip-3770/config.js
+index 09d831da880738f9f92318a1b8944232f773caf7..e5516bfa422dcdebc993f419657c8250dc3f8515 100644
+--- a/dist/src/utils/eip-3770/config.js
++++ b/dist/src/utils/eip-3770/config.js
+@@ -208,6 +208,7 @@ exports.networks = [
+     { chainId: 5115n, shortName: 'citrea-testnet' },
+     { chainId: 5165n, shortName: 'ftn' },
+     { chainId: 5330n, shortName: 'sseed' },
++    { chainId: 5464n, shortName: 'saga' },
+     { chainId: 5611n, shortName: 'obnbt' },
+     { chainId: 5700n, shortName: 'tsys' },
+     { chainId: 5851n, shortName: 'OntologyTestnet' },
