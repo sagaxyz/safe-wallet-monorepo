@@ -1,0 +1,12 @@
+diff --git a/dist/src/utils/eip-3770/config.js b/dist/src/utils/eip-3770/config.js
+index d73a9269a3b93fbea1725c51b3248c39a9ecd42e..3c5ba7d56c73b65bc6c675e524b0f8bb43a0260f 100644
+--- a/dist/src/utils/eip-3770/config.js
++++ b/dist/src/utils/eip-3770/config.js
+@@ -169,6 +169,7 @@ exports.networks = [
+     { chainId: 5003n, shortName: 'mnt-sep' },
+     { chainId: 5115n, shortName: 'citrea-testnet' },
+     { chainId: 5165n, shortName: 'ftn' },
++    { chainId: 5464n, shortName: 'saga' },
+     { chainId: 5700n, shortName: 'tsys' },
+     { chainId: 6001n, shortName: 'bouncebit-mainnet' },
+     { chainId: 6102n, shortName: 'cascadia' },

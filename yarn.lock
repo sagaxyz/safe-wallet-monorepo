@@ -6413,7 +6413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:1.8.0, @noble/hashes@npm:^1.1.2, @noble/hashes@npm:^1.3.3, @noble/hashes@npm:^1.4.0, @noble/hashes@npm:^1.5.0, @noble/hashes@npm:^1.8.0, @noble/hashes@npm:~1.8.0":
+"@noble/hashes@npm:1.8.0, @noble/hashes@npm:^1.1.2, @noble/hashes@npm:^1.4.0, @noble/hashes@npm:^1.5.0, @noble/hashes@npm:^1.8.0, @noble/hashes@npm:~1.8.0":
   version: 1.8.0
   resolution: "@noble/hashes@npm:1.8.0"
   checksum: 10/474b7f56bc6fb2d5b3a42132561e221b0ea4f91e590f4655312ca13667840896b34195e2b53b7f097ec080a1fdd3b58d902c2a8d0fbdf51d2e238b53808a177e
@@ -7822,7 +7822,7 @@ __metadata:
     "@react-navigation/native": "npm:^7.1.6"
     "@reduxjs/toolkit": "npm:^2.8.2"
     "@rtk-query/codegen-openapi": "npm:^2.0.0"
-    "@safe-global/protocol-kit": "npm:^5.2.12"
+    "@safe-global/protocol-kit": "patch:@safe-global/protocol-kit@npm%3A5.1.1#~/.yarn/patches/@safe-global-protocol-kit-npm-5.1.1-3e418b9943.patch"
     "@safe-global/store": "workspace:^"
     "@safe-global/test": "workspace:^"
     "@safe-global/types-kit": "npm:^1.0.5"
@@ -7939,31 +7939,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@safe-global/protocol-kit@npm:4.1.5":
-  version: 4.1.5
-  resolution: "@safe-global/protocol-kit@npm:4.1.5"
-  dependencies:
-    "@noble/hashes": "npm:^1.3.3"
-    "@safe-global/safe-core-sdk-types": "npm:^5.1.0"
-    "@safe-global/safe-deployments": "npm:^1.37.28"
-    "@safe-global/safe-modules-deployments": "npm:^2.2.1"
-    abitype: "npm:^1.0.2"
-    ethereumjs-util: "npm:^7.1.5"
-    ethers: "npm:^6.13.1"
-    semver: "npm:^7.6.2"
-  checksum: 10/e4b4b78527080954fe9523e31571cbe82ef5a6ef0a73dcd5037329761ecf06670f4759da7dbc4fdd1b73bc016314b7297aecd893fb39f98bde69b46ff2e4374a
-  languageName: node
-  linkType: hard
-
-"@safe-global/protocol-kit@npm:^5.2.12, @safe-global/protocol-kit@npm:^5.2.4":
-  version: 5.2.14
-  resolution: "@safe-global/protocol-kit@npm:5.2.14"
+"@safe-global/protocol-kit@npm:5.1.1":
+  version: 5.1.1
+  resolution: "@safe-global/protocol-kit@npm:5.1.1"
   dependencies:
     "@noble/curves": "npm:^1.6.0"
     "@peculiar/asn1-schema": "npm:^2.3.13"
-    "@safe-global/safe-deployments": "npm:^1.37.42"
-    "@safe-global/safe-modules-deployments": "npm:^2.2.14"
-    "@safe-global/types-kit": "npm:^1.0.5"
+    "@safe-global/safe-deployments": "npm:^1.37.22"
+    "@safe-global/safe-modules-deployments": "npm:^2.2.4"
+    "@safe-global/types-kit": "npm:^1.0.1"
     abitype: "npm:^1.0.2"
     semver: "npm:^7.6.3"
     viem: "npm:^2.21.8"
@@ -7972,23 +7956,7 @@ __metadata:
       optional: true
     "@peculiar/asn1-schema":
       optional: true
-  checksum: 10/9056005f3b647045fe9ac024f100ebfeefaf057348c980955160ed3747fa1ed67a3abf9596eea04ebdcc88ea8c7d000ffcd82eac200f11ffd6141ed2ada95bf0
-  languageName: node
-  linkType: hard
-
-"@safe-global/protocol-kit@patch:@safe-global/protocol-kit@npm%3A4.1.5#~/.yarn/patches/@safe-global-protocol-kit-npm-4.1.5-15df80b7bc.patch":
-  version: 4.1.5
-  resolution: "@safe-global/protocol-kit@patch:@safe-global/protocol-kit@npm%3A4.1.5#~/.yarn/patches/@safe-global-protocol-kit-npm-4.1.5-15df80b7bc.patch::version=4.1.5&hash=cac588"
-  dependencies:
-    "@noble/hashes": "npm:^1.3.3"
-    "@safe-global/safe-core-sdk-types": "npm:^5.1.0"
-    "@safe-global/safe-deployments": "npm:^1.37.28"
-    "@safe-global/safe-modules-deployments": "npm:^2.2.1"
-    abitype: "npm:^1.0.2"
-    ethereumjs-util: "npm:^7.1.5"
-    ethers: "npm:^6.13.1"
-    semver: "npm:^7.6.2"
-  checksum: 10/7d085cb8ddc935076b97d6538edbed19dda7e81b1124ba2bc798428d662ae32cc3285cf2a92e9ae610907338527b5d15a8eaadaac20d82e9941b56b0d68fb3c5
+  checksum: 10/1cd58d9906e4d1102aaf27c51f0bdabaada08d7c8925c1baacacd2ec2622ca610280011e4a0569c28d84f86ad388e7137ba48abb700f9b9af3611d2ca31044da
   languageName: node
   linkType: hard
 
@@ -8011,15 +7979,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-core-sdk-types@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@safe-global/safe-core-sdk-types@npm:5.1.0"
-  dependencies:
-    abitype: "npm:^1.0.2"
-  checksum: 10/2ad129abe2367084c75b906dfa06bc4c2b43413fc00048164168b9fd9336a4ea7494b624d61282963062a20e6c6fe45ac28cd9c16c8b787f26ce19f0d8d054e9
-  languageName: node
-  linkType: hard
-
 "@safe-global/safe-deployments@npm:1.37.28":
   version: 1.37.28
   resolution: "@safe-global/safe-deployments@npm:1.37.28"
@@ -8029,12 +7988,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-deployments@npm:^1.37.42":
-  version: 1.37.42
-  resolution: "@safe-global/safe-deployments@npm:1.37.42"
+"@safe-global/safe-deployments@npm:^1.37.22":
+  version: 1.37.43
+  resolution: "@safe-global/safe-deployments@npm:1.37.43"
   dependencies:
     semver: "npm:^7.6.2"
-  checksum: 10/18df8a207b293c50862ffb7866cef50320c796e43fbdc9888978de7a7fcd8af8874c6a3f41551001a28d9cf0ee8266cf69c997eb3df586bb59bf74bf37926a95
+  checksum: 10/c96097165e2327db7eabd0f0b95b7cae5846feab8c1d7b421975c184e0e6af72b2d96f170b909d7697e11c95963c3b0cb9132c874b7ff4b1614bb02163698004
   languageName: node
   linkType: hard
 
@@ -8054,7 +8013,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-modules-deployments@npm:^2.2.1, @safe-global/safe-modules-deployments@npm:^2.2.12, @safe-global/safe-modules-deployments@npm:^2.2.14":
+"@safe-global/safe-modules-deployments@npm:^2.2.12, @safe-global/safe-modules-deployments@npm:^2.2.4":
   version: 2.2.14
   resolution: "@safe-global/safe-modules-deployments@npm:2.2.14"
   checksum: 10/1c752d78f89f5a1eddb8ddb8e69462292371185c6c209e77fc588dfde73bc79112bec7ee609406ad6ce3e0362843928ac7ae81a15e79cf464305e4cf7124e469
@@ -8107,7 +8066,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@safe-global/types-kit@npm:^1.0.4, @safe-global/types-kit@npm:^1.0.5":
+"@safe-global/types-kit@npm:^1.0.1, @safe-global/types-kit@npm:^1.0.4, @safe-global/types-kit@npm:^1.0.5":
   version: 1.0.5
   resolution: "@safe-global/types-kit@npm:1.0.5"
   dependencies:
@@ -8123,7 +8082,7 @@ __metadata:
     "@cowprotocol/app-data": "npm:^3.1.0"
     "@faker-js/faker": "npm:^9.0.3"
     "@types/jest": "npm:^29.5.14"
-    ethers: "npm:^6.14.3"
+    ethers: "npm:6.14.3"
     jest: "npm:^29.7.0"
     ts-node: "npm:^10.9.2"
   peerDependencies:
@@ -8166,7 +8125,7 @@ __metadata:
     "@reduxjs/toolkit": "npm:^2.8.2"
     "@reown/walletkit": "npm:^1.2.7"
     "@safe-global/api-kit": "npm:^2.4.6"
-    "@safe-global/protocol-kit": "patch:@safe-global/protocol-kit@npm%3A4.1.5#~/.yarn/patches/@safe-global-protocol-kit-npm-4.1.5-15df80b7bc.patch"
+    "@safe-global/protocol-kit": "patch:@safe-global/protocol-kit@npm%3A5.1.1#~/.yarn/patches/@safe-global-protocol-kit-npm-5.1.1-3e418b9943.patch"
     "@safe-global/safe-apps-sdk": "npm:^9.1.0"
     "@safe-global/safe-client-gateway-sdk": "npm:v1.60.1"
     "@safe-global/safe-deployments": "patch:@safe-global/safe-deployments@npm%3A1.37.28#~/.yarn/patches/@safe-global-safe-deployments-npm-1.37.28-060d6063bb.patch"
@@ -18149,7 +18108,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethereumjs-util@npm:^7.1.4, ethereumjs-util@npm:^7.1.5":
+"ethereumjs-util@npm:^7.1.4":
   version: 7.1.5
   resolution: "ethereumjs-util@npm:7.1.5"
   dependencies:
