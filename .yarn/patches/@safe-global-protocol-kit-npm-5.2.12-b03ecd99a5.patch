@@ -1,12 +1,12 @@
 diff --git a/dist/src/utils/eip-3770/config.js b/dist/src/utils/eip-3770/config.js
-index d73a9269a3b93fbea1725c51b3248c39a9ecd42e..3c5ba7d56c73b65bc6c675e524b0f8bb43a0260f 100644
+index 09d831da880738f9f92318a1b8944232f773caf7..e5516bfa422dcdebc993f419657c8250dc3f8515 100644
 --- a/dist/src/utils/eip-3770/config.js
 +++ b/dist/src/utils/eip-3770/config.js
-@@ -169,6 +169,7 @@ exports.networks = [
-     { chainId: 5003n, shortName: 'mnt-sep' },
+@@ -208,6 +208,7 @@ exports.networks = [
      { chainId: 5115n, shortName: 'citrea-testnet' },
      { chainId: 5165n, shortName: 'ftn' },
+     { chainId: 5330n, shortName: 'sseed' },
 +    { chainId: 5464n, shortName: 'saga' },
+     { chainId: 5611n, shortName: 'obnbt' },
      { chainId: 5700n, shortName: 'tsys' },
-     { chainId: 6001n, shortName: 'bouncebit-mainnet' },
-     { chainId: 6102n, shortName: 'cascadia' },
+     { chainId: 5851n, shortName: 'OntologyTestnet' },
