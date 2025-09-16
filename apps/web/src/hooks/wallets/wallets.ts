@@ -39,7 +39,6 @@ const walletConnectV2 = (chain: ChainInfo) => {
 const WALLET_MODULES: Partial<{ [_key in WALLET_KEYS]: (chain: ChainInfo) => WalletInit }> = {
   [WALLET_KEYS.INJECTED]: () => injectedWalletModule() as WalletInit,
   [WALLET_KEYS.WALLETCONNECT_V2]: (chain) => walletConnectV2(chain) as WalletInit,
-  [WALLET_KEYS.COINBASE]: () => coinbaseModule({ darkMode: prefersDarkMode() }) as WalletInit,
   [WALLET_KEYS.LEDGER]: () => ledgerModule(),
   [WALLET_KEYS.PK]: (chain) => pkModule(chain.chainId, chain.rpcUri) as WalletInit,
 }
