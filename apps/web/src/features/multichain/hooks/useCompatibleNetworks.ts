@@ -13,7 +13,7 @@ import {
 import type { ChainInfo } from '@safe-global/safe-gateway-typescript-sdk'
 import type { ReplayedSafeProps } from '@safe-global/utils/features/counterfactual/store/types'
 
-const SUPPORTED_VERSIONS: SafeVersion[] = ['1.4.1', '1.3.0']
+const SUPPORTED_VERSIONS: SafeVersion[] = ['1.4.1']
 
 /**
  * Returns all chains where the creations's masterCopy and factory are deployed.

@@ -8,6 +8,7 @@ import { isPredictedSafeProps, isReplayedSafeProps } from '@/features/counterfac
 import { isLegacyVersion } from '@safe-global/utils/services/contracts/utils'
 import { isInDeployments } from '@safe-global/utils/hooks/coreSDK/utils'
 import type { SafeCoreSDKProps } from '@safe-global/utils/hooks/coreSDK/types'
+import type { SafeVersion } from '@safe-global/types-kit'
 
 // Safe Core SDK
 export const initSafeSDK = async ({
@@ -50,7 +51,12 @@ export const initSafeSDK = async ({
       return Safe.init({
         provider: provider._getConnection().url,
         isL1SafeSingleton,
-        predictedSafe: undeployedSafe.props,
+        predictedSafe: {
+          safeAccountConfig: undeployedSafe.props.safeAccountConfig,
+          safeDeploymentConfig: {
+            safeVersion: safeVersion as SafeVersion,
+          },
+        },
       })
     }
     // We cannot initialize a Core SDK for replayed Safes yet.

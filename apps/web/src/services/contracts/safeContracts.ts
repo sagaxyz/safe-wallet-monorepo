@@ -66,7 +66,7 @@ export const getReadOnlyGnosisSafeContract = async (
 // MultiSend
 
 export const _getMinimumMultiSendCallOnlyVersion = (safeVersion: SafeState['version']) => {
-  const INITIAL_CALL_ONLY_VERSION = '1.3.0'
+  const INITIAL_CALL_ONLY_VERSION = '1.4.1'
 
   if (!safeVersion) {
     return INITIAL_CALL_ONLY_VERSION

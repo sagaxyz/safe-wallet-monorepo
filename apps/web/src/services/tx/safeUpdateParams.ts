@@ -42,7 +42,7 @@ export const createUpdateSafeTxs = async (safe: SafeState, chain: ChainInfo): Pr
   assertValidSafeVersion(safe.version)
 
   // 1.3.0 Safes are updated using a delegate call to a migration contract
-  if (semverSatisfies(safe.version, '1.3.0')) {
+  if (semverSatisfies(safe.version, '1.4.1')) {
     return [createUpdateMigration(chain, safe.version, safe.fallbackHandler?.value)]
   }
 

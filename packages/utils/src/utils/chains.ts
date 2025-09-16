@@ -45,7 +45,7 @@ export enum FEATURES {
   MIXPANEL = 'MIXPANEL',
 }
 
-const MIN_SAFE_VERSION = '1.3.0'
+const MIN_SAFE_VERSION = '1.4.1'
 
 export const hasFeature = (chain: Pick<Chain, 'features'>, feature: FEATURES): boolean => {
   return (chain.features as string[]).includes(feature)
@@ -60,7 +60,7 @@ export const getBlockExplorerLink = (
   }
 }
 /** This version is used if a network does not have the LATEST_SAFE_VERSION deployed yet */
-const FALLBACK_SAFE_VERSION = '1.3.0' as const
+const FALLBACK_SAFE_VERSION = '1.4.1' as const
 export const getLatestSafeVersion = (
   chain: Pick<Chain, 'recommendedMasterCopyVersion' | 'chainId'> | undefined,
 ): SafeVersion => {

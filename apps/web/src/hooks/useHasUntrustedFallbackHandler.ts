@@ -27,7 +27,6 @@ export const useHasUntrustedFallbackHandler = (fallbackHandler?: string | string
       return (
         !sameAddress(fallbackHandlerAddress, twapFallbackHandler) &&
         !hasMatchingDeployment(getCompatibilityFallbackHandlerDeployments, fallbackHandlerAddress, safe.chainId, [
-          '1.3.0',
           '1.4.1',
         ])
       )
