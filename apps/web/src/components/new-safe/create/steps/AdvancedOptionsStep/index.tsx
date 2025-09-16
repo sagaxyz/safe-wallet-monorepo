@@ -52,14 +52,14 @@ const AdvancedOptionsStep = ({ onSubmit, onBack, data, setStep }: StepRenderProp
     () =>
       chain
         ? createNewUndeployedSafeWithoutSalt(
-          selectedSafeVersion,
-          {
-            owners: data.owners.map((owner) => owner.address),
-            threshold: data.threshold,
-            paymentReceiver: selectedPaymentReceiver,
-          },
-          chain,
-        )
+            selectedSafeVersion,
+            {
+              owners: data.owners.map((owner) => owner.address),
+              threshold: data.threshold,
+              paymentReceiver: selectedPaymentReceiver,
+            },
+            chain,
+          )
         : undefined,
     [chain, data.owners, data.threshold, selectedSafeVersion, selectedPaymentReceiver],
   )

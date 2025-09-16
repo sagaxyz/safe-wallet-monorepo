@@ -8,7 +8,7 @@ import { isPredictedSafeProps, isReplayedSafeProps } from '@/features/counterfac
 import { isLegacyVersion } from '@safe-global/utils/services/contracts/utils'
 import { isInDeployments } from '@safe-global/utils/hooks/coreSDK/utils'
 import type { SafeCoreSDKProps } from '@safe-global/utils/hooks/coreSDK/types'
-import { SafeVersion } from '@safe-global/types-kit'
+import type { SafeVersion } from '@safe-global/types-kit'
 
 // Safe Core SDK
 export const initSafeSDK = async ({
@@ -24,7 +24,6 @@ export const initSafeSDK = async ({
   if (providerNetwork !== BigInt(chainId)) return
 
   const safeVersion = version ?? (await Gnosis_safe__factory.connect(address, provider).VERSION())
-
   let isL1SafeSingleton = chainId === chains.eth
 
   // If it is an official deployment we should still initiate the safeSDK
@@ -56,14 +55,13 @@ export const initSafeSDK = async ({
           safeAccountConfig: undeployedSafe.props.safeAccountConfig,
           safeDeploymentConfig: {
             safeVersion: safeVersion as SafeVersion,
-          }
-        }
+          },
+        },
       })
     }
     // We cannot initialize a Core SDK for replayed Safes yet.
     return
   }
-
   return Safe.init({
     provider: provider._getConnection().url,
     safeAddress: address,

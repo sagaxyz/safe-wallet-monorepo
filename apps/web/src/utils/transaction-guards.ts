@@ -464,8 +464,7 @@ export const isOnChainSignMessageTxData = (data: TransactionData | undefined, ch
   const toAddress = data?.to.value
   const isDelegateCall = data?.operation === Operation.DELEGATE
   const isSignMessageLib =
-    toAddress !== undefined &&
-    hasMatchingDeployment(getSignMessageLibDeployments, toAddress, chainId, ['1.4.1'])
+    toAddress !== undefined && hasMatchingDeployment(getSignMessageLibDeployments, toAddress, chainId, ['1.4.1'])
   return Boolean(data && data.hexData?.startsWith(signMessageSelector) && isSignMessageLib && isDelegateCall)
 }
 

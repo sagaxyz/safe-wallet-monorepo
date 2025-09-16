@@ -112,7 +112,6 @@ export const getMultiSendCallOnlyContractDeployment = (chain: ChainInfo, safeVer
 }
 
 export const getMultiSendContractDeployment = (chain: ChainInfo, safeVersion: SafeState['version']) => {
-  console.log({ safeVersion });
   return _tryDeploymentVersions(getMultiSendDeployment, chain, safeVersion)
 }
 
