@@ -5,7 +5,7 @@ import type { SafeTransactionData, SafeVersion } from '@safe-global/types-kit'
 import type { MessageItem } from '@safe-global/store/gateway/AUTO_GENERATED/messages'
 import { generateSafeMessageMessage } from '@safe-global/utils/utils/safe-messages'
 
-const NEW_DOMAIN_TYPE_HASH_VERSION = '>=1.3.0'
+const NEW_DOMAIN_TYPE_HASH_VERSION = '>=1.4.1'
 const NEW_SAFE_TX_TYPE_HASH_VERSION = '>=1.0.0'
 
 export function getDomainHash({

@@ -49,12 +49,12 @@ type BlockaidPayload = {
   chain: string
   account_address: string
   metadata:
-    | {
-        domain: string
-      }
-    | {
-        non_dapp: true
-      }
+  | {
+    domain: string
+  }
+  | {
+    non_dapp: true
+  }
   data: {
     method: 'eth_signTypedData_v4'
     params: [string, string]
@@ -72,7 +72,7 @@ export class BlockaidModule implements SecurityModule<BlockaidModuleRequest, Blo
       return JSON.stringify(
         generateTypedData({
           safeAddress,
-          safeVersion: '1.3.0', // TODO: pass to module, taking into account that lower Safe versions don't have chainId in payload
+          safeVersion: '1.4.1', // TODO: pass to module, taking into account that lower Safe versions don't have chainId in payload
           chainId: BigInt(chainId),
           data: {
             ...data.data,
@@ -102,11 +102,11 @@ export class BlockaidModule implements SecurityModule<BlockaidModuleRequest, Blo
       options: ['simulation', 'validation'],
       metadata: request.origin
         ? {
-            domain: request.origin,
-          }
+          domain: request.origin,
+        }
         : {
-            non_dapp: true,
-          },
+          non_dapp: true,
+        },
     }
     const res = await fetch(`${BLOCKAID_API}/v0/evm/json-rpc/scan`, {
       method: 'POST',

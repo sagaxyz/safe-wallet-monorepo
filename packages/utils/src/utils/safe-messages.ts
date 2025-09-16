@@ -16,7 +16,7 @@ import { SigningMethod } from '@safe-global/protocol-kit'
  * From v1.3.0, EIP-1271 support was moved to the CompatibilityFallbackHandler.
  * Also 1.3.0 introduces the chainId in the domain part of the SafeMessage
  */
-const EIP1271_FALLBACK_HANDLER_SUPPORTED_SAFE_VERSION = '1.3.0'
+const EIP1271_FALLBACK_HANDLER_SUPPORTED_SAFE_VERSION = '1.4.1'
 
 const EIP1271_SUPPORTED_SAFE_VERSION = '1.0.0'
 
@@ -57,9 +57,9 @@ export const generateSafeMessageTypedData = (
   return {
     domain: isHandledByFallbackHandler
       ? {
-          chainId: Number(chainId),
-          verifyingContract: address.value,
-        }
+        chainId: Number(chainId),
+        verifyingContract: address.value,
+      }
       : { verifyingContract: address.value },
     types: {
       SafeMessage: [{ name: 'message', type: 'bytes' }],

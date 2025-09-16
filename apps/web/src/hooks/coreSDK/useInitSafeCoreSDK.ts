@@ -13,6 +13,7 @@ import { asError } from '@safe-global/utils/services/exceptions/utils'
 
 export const useInitSafeCoreSDK = () => {
   const { safe, safeLoaded } = useSafeInfo()
+
   const dispatch = useAppDispatch()
   const web3ReadOnly = useWeb3ReadOnly()
 

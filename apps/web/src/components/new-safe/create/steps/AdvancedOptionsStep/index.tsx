@@ -52,14 +52,14 @@ const AdvancedOptionsStep = ({ onSubmit, onBack, data, setStep }: StepRenderProp
     () =>
       chain
         ? createNewUndeployedSafeWithoutSalt(
-            selectedSafeVersion,
-            {
-              owners: data.owners.map((owner) => owner.address),
-              threshold: data.threshold,
-              paymentReceiver: selectedPaymentReceiver,
-            },
-            chain,
-          )
+          selectedSafeVersion,
+          {
+            owners: data.owners.map((owner) => owner.address),
+            threshold: data.threshold,
+            paymentReceiver: selectedPaymentReceiver,
+          },
+          chain,
+        )
         : undefined,
     [chain, data.owners, data.threshold, selectedSafeVersion, selectedPaymentReceiver],
   )
@@ -124,7 +124,7 @@ const AdvancedOptionsStep = ({ onSubmit, onBack, data, setStep }: StepRenderProp
               render={({ field }) => (
                 <TextField select {...field} label="Safe version">
                   <MenuItem value="1.4.1">1.4.1 (latest)</MenuItem>
-                  <MenuItem value="1.3.0">1.3.0</MenuItem>
+                  {/* <MenuItem value="1.3.0">1.3.0</MenuItem> */}
                 </TextField>
               )}
             />
