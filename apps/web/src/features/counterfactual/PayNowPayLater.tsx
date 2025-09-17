@@ -71,7 +71,7 @@ const PayNowPayLater = ({
               className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayNow })}
               label={
                 <>
-                  <Typography className={css.radioTitle}>Activate now</Typography>
+                  <Typography className={css.radioTitle}>Pay now</Typography>
                   <Typography className={css.radioSubtitle} variant="body2" color="text.secondary">
                     {canRelay ? (
                       'Sponsored free transaction'
@@ -93,7 +93,7 @@ const PayNowPayLater = ({
               className={classnames(css.radioContainer, { [css.active]: payMethod === PayMethod.PayLater })}
               label={
                 <>
-                  <Typography className={css.radioTitle}>Activate later</Typography>
+                  <Typography className={css.radioTitle}>Pay later</Typography>
                   <Typography className={css.radioSubtitle} variant="body2" color="text.secondary">
                     with the first transaction
                   </Typography>
