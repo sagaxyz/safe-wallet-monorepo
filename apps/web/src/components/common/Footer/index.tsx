@@ -46,6 +46,9 @@ const Footer = (): ReactElement | null => {
     <footer className={css.container}>
       <ul>
         <li>
+          <Typography variant="caption">© {new Date().getFullYear()} Saga Safe</Typography>
+        </li>
+        <li>
           <ExternalLink href="https://www.saga.xyz" noIcon sx={{ span: { textDecoration: 'underline' } }}>
             Saga
           </ExternalLink>

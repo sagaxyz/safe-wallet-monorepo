@@ -7,18 +7,21 @@ import {
   SidebarListItemIcon,
   SidebarListItemText,
 } from '@/components/sidebar/SidebarList'
-import { loadBeamer } from '@/services/beamer'
+import { BEAMER_SELECTOR, loadBeamer } from '@/services/beamer'
 import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
 import { Divider, Link, ListItem, SvgIcon, Typography } from '@mui/material'
 import DebugToggle from '../DebugToggle'
 import { IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
-import ProtofireLogo from '@/public/images/protofire-logo.svg'
-import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
 import darkPalette from '@/components/theme/darkPalette'
 import Track from '@/components/common/Track'
 import { OVERVIEW_EVENTS } from '@/services/analytics'
+import { NEW_SUGGESTION_FORM, PROTOFIRE_SUPPORT_LINK } from '@/config/constants.extra'
+
+import ProtofireLogo from '@/public/images/protofire-logo.svg'
+import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
+import SuggestionIcon from '@/public/images/sidebar/lightbulb_icon.svg'
 
 const SidebarFooter = (): ReactElement => {
   const chain = useCurrentChain()
@@ -44,12 +47,7 @@ const SidebarFooter = (): ReactElement => {
       )}
       <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
         <ListItem disablePadding>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://safe-support.protofire.io"
-            style={{ width: '100%' }}
-          >
+          <a target="_blank" rel="noopener noreferrer" href={PROTOFIRE_SUPPORT_LINK} style={{ width: '100%' }}>
             <SidebarListItemButton>
               <SidebarListItemIcon color="primary">
                 <HelpCenterIcon />
@@ -57,6 +55,18 @@ const SidebarFooter = (): ReactElement => {
               <SidebarListItemText data-testid="list-item-need-help" bold>
                 Need help?
               </SidebarListItemText>
+            </SidebarListItemButton>
+          </a>
+        </ListItem>
+      </Track>
+      <Track {...OVERVIEW_EVENTS.SUGGESTIONS}>
+        <ListItem style={{ marginTop: '8px' }} disablePadding>
+          <a target="_blank" rel="noopener noreferrer" href={NEW_SUGGESTION_FORM} style={{ width: '100%' }}>
+            <SidebarListItemButton id={BEAMER_SELECTOR} style={{ backgroundColor: '#12FF80', color: 'black' }}>
+              <SidebarListItemIcon color="primary">
+                <SuggestionIcon />
+              </SidebarListItemIcon>
+              <SidebarListItemText bold>New Features Suggestion?</SidebarListItemText>
             </SidebarListItemButton>
           </a>
         </ListItem>
@@ -78,25 +88,6 @@ const SidebarFooter = (): ReactElement => {
         </SidebarListItemText>
       </ListItem>
     </SidebarList>
-
-    // <Stack direction="row" alignItems="center" spacing={1} my={0.5} mx={1}>
-    //   <IndexingStatus />
-
-    //   <Box ml="auto !important">
-    //     <Track {...OVERVIEW_EVENTS.WHATS_NEW}>
-    //       <IconButton onClick={handleBeamer} id={BEAMER_SELECTOR} data-testid="list-item-whats-new" color="primary">
-    //         <SvgIcon component={BeamerIcon} inheritViewBox fontSize="small" />
-    //       </IconButton>
-    //     </Track>
-    //   </Box>
-
-    //   <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
-    //     <IconButton href={HELP_CENTER_URL} target="_blank" data-testid="list-item-need-help" color="primary">
-    //       <SvgIcon component={HelpCenterIcon} inheritViewBox fontSize="small" />
-    //     </IconButton>
-    //   </Track>
-    // </Stack>
-    // </>
   )
 }
 
