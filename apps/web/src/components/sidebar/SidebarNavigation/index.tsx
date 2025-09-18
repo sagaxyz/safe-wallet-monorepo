@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, type ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import { Divider, ListItemButton } from '@mui/material'
+import { ListItemButton } from '@mui/material'
 import { ImplementationVersionState } from '@safe-global/safe-gateway-typescript-sdk'
 
 import {
@@ -110,8 +110,6 @@ const Navigation = (): ReactElement => {
           ItemTag = queueSize ? <SidebarListItemCounter count={queueSize} /> : null
         }
 
-        const isSettingsItem = item.href === AppRoutes.settings.setup
-
         return (
           <Tooltip
             title={isDisabled ? 'You need to activate your Safe first.' : ''}
@@ -147,8 +145,6 @@ const Navigation = (): ReactElement => {
                   </SidebarListItemText>
                 </SidebarListItemButton>
               </ListItemButton>
-
-              {isSettingsItem && <Divider sx={{ mt: 1, mb: 0.5 }} />}
             </div>
           </Tooltip>
         )

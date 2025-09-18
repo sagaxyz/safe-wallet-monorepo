@@ -10,9 +10,7 @@ import {
 import { BEAMER_SELECTOR, loadBeamer } from '@/services/beamer'
 import { useAppSelector } from '@/store'
 import { CookieAndTermType, hasConsentFor } from '@/store/cookiesAndTermsSlice'
-import { Divider, Link, ListItem, SvgIcon, Typography } from '@mui/material'
-import DebugToggle from '../DebugToggle'
-import { IS_PRODUCTION } from '@/config/constants'
+import { Link, ListItem, SvgIcon, Typography } from '@mui/material'
 import { useCurrentChain } from '@/hooks/useChains'
 import darkPalette from '@/components/theme/darkPalette'
 import Track from '@/components/common/Track'
@@ -36,15 +34,6 @@ const SidebarFooter = (): ReactElement => {
 
   return (
     <SidebarList>
-      {!IS_PRODUCTION && (
-        <>
-          <ListItem disablePadding>
-            <DebugToggle />
-          </ListItem>
-
-          <Divider flexItem />
-        </>
-      )}
       <Track {...OVERVIEW_EVENTS.HELP_CENTER}>
         <ListItem disablePadding>
           <a target="_blank" rel="noopener noreferrer" href={PROTOFIRE_SUPPORT_LINK} style={{ width: '100%' }}>
