@@ -151,7 +151,6 @@ const Navigation = (): ReactElement => {
       })}
 
       <Divider flexItem />
-
     </SidebarList>
   )
 }
