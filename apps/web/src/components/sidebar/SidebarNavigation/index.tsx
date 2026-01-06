@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, type ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import { ListItemButton } from '@mui/material'
+import { Divider, ListItemButton } from '@mui/material'
 import { ImplementationVersionState } from '@safe-global/safe-gateway-typescript-sdk'
 
 import {
@@ -149,6 +149,9 @@ const Navigation = (): ReactElement => {
           </Tooltip>
         )
       })}
+
+      <Divider flexItem />
+
     </SidebarList>
   )
 }
