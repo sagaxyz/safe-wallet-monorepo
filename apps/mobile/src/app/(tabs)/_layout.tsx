@@ -37,7 +37,7 @@ export default function TabLayout() {
             header: AssetsNavbar,
             title: 'Home',
             tabBarButtonTestID: 'home-tab',
-            tabBarButton: ({ children, ...rest }) => {
+            tabBarButton: ({ children, ref: _ref, ...rest }) => {
               return (
                 <Pressable {...rest} style={styles.tabButton}>
                   {children}
@@ -57,7 +57,7 @@ export default function TabLayout() {
             headerLeftContainerStyle: { flexGrow: 0 },
             tabBarButtonTestID: 'transactions-tab',
             tabBarLabel: 'Transactions',
-            tabBarButton: ({ children, ...rest }) => {
+            tabBarButton: ({ children, ref: _ref, ...rest }) => {
               return (
                 <Pressable {...rest} style={styles.tabButton}>
                   {children}
@@ -75,7 +75,7 @@ export default function TabLayout() {
               title: 'Account',
               headerShown: false,
               tabBarButtonTestID: 'account-tab',
-              tabBarButton: ({ children, ...rest }) => {
+              tabBarButton: ({ children, ref: _ref, ...rest }) => {
                 return (
                   <Pressable {...rest} style={styles.tabButton}>
                     {children}
