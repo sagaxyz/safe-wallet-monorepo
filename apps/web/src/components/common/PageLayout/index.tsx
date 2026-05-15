@@ -56,7 +56,7 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
 
         <BatchSidebar isOpen={isBatchOpen} onToggle={setBatchOpen} />
 
-        {!isSafeLabsTermsPage && <Footer />}
+        {!isSafeLabsTermsPage && !isWelcomePage && <Footer />}
       </div>
     </>
   )
