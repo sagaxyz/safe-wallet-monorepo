@@ -44,10 +44,6 @@ const staticHints: Record<
     variant: 'info',
     steps: [
       {
-        title: 'Network fee',
-        text: 'Deploying your Safe Account requires the payment of the associated network fee with your connected wallet. An estimation will be provided in the last step.',
-      },
-      {
         title: 'Address book privacy',
         text: 'The name of your Safe Account will be stored in a local address book on your device and can be changed at a later stage. It will not be shared with us or any third party.',
       },
@@ -95,7 +91,7 @@ const staticHints: Record<
     steps: [
       {
         title: 'Connect your Safe Account',
-        text: 'In our Safe Apps section you can connect your Safe Account to dApps directly or via Wallet Connect to interact with any application.',
+        text: 'In our Safe Apps section you can connect your Safe Account to over 70 dApps directly or via Wallet Connect to interact with any application.',
       },
     ],
   },

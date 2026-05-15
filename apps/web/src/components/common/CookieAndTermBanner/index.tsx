@@ -1,6 +1,8 @@
 import { useEffect, type ReactElement } from 'react'
 import classnames from 'classnames'
-import { Grid, Paper } from '@mui/material'
+import type { CheckboxProps } from '@mui/material'
+import { Grid, Button, Checkbox, FormControlLabel, Typography, Paper, SvgIcon, Box } from '@mui/material'
+import WarningIcon from '@/public/images/notifications/warning.svg'
 import { useForm } from 'react-hook-form'
 import * as metadata from '@/markdown/terms/version'
 
@@ -15,13 +17,24 @@ import { selectCookieBanner, openCookieBanner, closeCookieBanner } from '@/store
 
 import css from './styles.module.css'
 import { AppRoutes } from '@/config/routes'
-import { useRouter } from 'next/router'
-import { COOKIE_AND_TERM_WARNING, styles } from './constants'
-import WarningMessage from './WarningMessage'
-import IntroText from './IntroText'
-import CookieOptionsList from './CookieOptionsList'
-import CookieBannerActions from './CookieBannerActions'
-import { useIsOfficialHost } from '@/hooks/useIsOfficialHost'
+import ExternalLink from '../ExternalLink'
+
+const COOKIE_AND_TERM_WARNING: Record<CookieAndTermType, string> = {
+  [CookieAndTermType.TERMS]: '',
+  [CookieAndTermType.NECESSARY]: '',
+  [CookieAndTermType.UPDATES]: ``,
+  [CookieAndTermType.ANALYTICS]: '',
+}
+
+const CookieCheckbox = ({
+  checkboxProps,
+  label,
+  checked,
+}: {
+  label: string
+  checked: boolean
+  checkboxProps: CheckboxProps
+}) => <FormControlLabel label={label} checked={checked} control={<Checkbox {...checkboxProps} />} sx={{ mt: '-9px' }} />
 
 export const CookieAndTermBanner = ({
   warningKey,
@@ -30,19 +43,15 @@ export const CookieAndTermBanner = ({
   warningKey?: CookieAndTermType
   inverted?: boolean
 }): ReactElement => {
-  const isOfficialHost = useIsOfficialHost()
-  const warning =
-    warningKey && (isOfficialHost || warningKey !== CookieAndTermType.UPDATES)
-      ? COOKIE_AND_TERM_WARNING[warningKey]
-      : undefined
+  const warning = warningKey ? COOKIE_AND_TERM_WARNING[warningKey] : undefined
   const dispatch = useAppDispatch()
   const cookies = useAppSelector(selectCookies)
 
-  const { control, getValues, setValue } = useForm({
+  const { getValues } = useForm({
     defaultValues: {
       [CookieAndTermType.TERMS]: true,
       [CookieAndTermType.NECESSARY]: true,
-      [CookieAndTermType.UPDATES]: isOfficialHost ? (cookies[CookieAndTermType.UPDATES] ?? false) : false,
+      [CookieAndTermType.UPDATES]: cookies[CookieAndTermType.UPDATES] ?? false,
       [CookieAndTermType.ANALYTICS]: cookies[CookieAndTermType.ANALYTICS] ?? false,
       ...(warningKey ? { [warningKey]: true } : {}),
     },
@@ -53,32 +62,82 @@ export const CookieAndTermBanner = ({
     dispatch(
       saveCookieAndTermConsent({
         ...values,
-        ...(!isOfficialHost ? { [CookieAndTermType.UPDATES]: false } : {}),
         termsVersion: metadata.version,
       }),
     )
     dispatch(closeCookieBanner())
   }
 
-  const handleAcceptAll = () => {
-    setValue(CookieAndTermType.UPDATES, isOfficialHost)
-    setValue(CookieAndTermType.ANALYTICS, true)
-    setTimeout(handleAccept, 300)
-  }
-
   return (
     <Paper data-testid="cookies-popup" className={classnames(css.container, { [css.inverted]: inverted })}>
-      {warning && <WarningMessage message={warning} />}
+      {warning && (
+        <Typography
+          align="center"
+          variant="body2"
+          sx={{
+            mb: 2,
+            color: 'warning.background',
+          }}
+        >
+          <SvgIcon component={WarningIcon} inheritViewBox fontSize="small" color="error" sx={{ mb: -0.4 }} /> {warning}
+        </Typography>
+      )}
       <form>
-        <Grid container sx={{ alignItems: 'center' }}>
+        <Grid
+          container
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Grid item xs>
-            <IntroText lastUpdated={metadata.lastUpdated} />
+            <Typography
+              variant="body2"
+              sx={{
+                mb: 2,
+              }}
+            >
+              By browsing this page, you accept our{' '}
+              <ExternalLink href={AppRoutes.terms}>Terms & Conditions</ExternalLink> and the use of necessary cookies.{' '}
+              <ExternalLink href={AppRoutes.cookie}>Cookie policy</ExternalLink>
+            </Typography>
 
-            <Grid container sx={styles.optionsGrid}>
-              <CookieOptionsList control={control} />
+            <Grid
+              container
+              sx={{
+                alignItems: 'center',
+                gap: 4,
+              }}
+            >
+              <Grid item xs={12} sm>
+                <Box
+                  sx={{
+                    mb: 2,
+                  }}
+                >
+                  <CookieCheckbox checkboxProps={{ id: 'necessary', disabled: true }} label="Necessary" checked />
+                  <br />
+                  <Typography variant="body2">Locally stored data for core functionality</Typography>
+                </Box>
+              </Grid>
             </Grid>
 
-            <CookieBannerActions onAccept={handleAccept} onAcceptAll={handleAcceptAll} />
+            <Grid
+              container
+              sx={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                mt: 4,
+                gap: 2,
+              }}
+            >
+              <Grid item>
+                <Typography>
+                  <Button onClick={handleAccept} variant="text" size="small" color="inherit" disableElevation>
+                    Save settings
+                  </Button>
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </form>
@@ -89,11 +148,9 @@ export const CookieAndTermBanner = ({
 const CookieBannerPopup = (): ReactElement | null => {
   const cookiePopup = useAppSelector(selectCookieBanner)
   const dispatch = useAppDispatch()
-  const router = useRouter()
-  const exceptionPages = [AppRoutes.safeLabsTerms]
 
   const hasAccepted = useAppSelector(hasAcceptedTerms)
-  const shouldOpen = !hasAccepted && !exceptionPages.includes(router.pathname)
+  const shouldOpen = !hasAccepted
 
   useEffect(() => {
     if (shouldOpen) {

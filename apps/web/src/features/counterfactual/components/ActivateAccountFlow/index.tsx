@@ -1,11 +1,10 @@
 import { createNewSafe, relaySafeCreation } from '@/components/new-safe/create/logic'
-import { NetworkFee, SafeSetupOverview } from '@/components/new-safe/create/steps/ReviewStep'
+import { SafeSetupOverview } from '@/components/new-safe/create/steps/ReviewStep'
 import ReviewRow from '@/components/new-safe/ReviewRow'
 import { TxModalContext } from '@/components/tx-flow'
 import TxCard from '@/components/tx-flow/common/TxCard'
 import TxLayout from '@/components/tx-flow/common/TxLayout'
 import ErrorMessage from '@/components/tx/ErrorMessage'
-import { FeeTokenSettingsHint } from '@/components/tx/FeeTokenSettingsHint'
 import { ExecutionMethod, ExecutionMethodSelector } from '@/components/tx/ExecutionMethodSelector'
 import { safeCreationDispatch, SafeCreationEvent } from '../../services/safeCreationEvents'
 import { selectUndeployedSafe } from '../../store/undeployedSafesSlice'
@@ -19,7 +18,6 @@ import useChainId from '@/hooks/useChainId'
 import { useCurrentChain } from '@/hooks/useChains'
 import { useLeastRemainingRelays } from '@/hooks/useRemainingRelays'
 import useSafeInfo from '@/hooks/useSafeInfo'
-import useWalletCanPay from '@/hooks/useWalletCanPay'
 import useWallet from '@/hooks/wallets/useWallet'
 import { OVERVIEW_EVENTS, trackEvent, WALLET_EVENTS, MixpanelEventParams } from '@/services/analytics'
 import { TX_EVENTS, TX_TYPES } from '@/services/analytics/events/transactions'
@@ -37,7 +35,6 @@ import { getSafeToL2SetupDeployment } from '@safe-global/safe-deployments'
 import { FEATURES, hasFeature } from '@safe-global/utils/utils/chains'
 import type { UndeployedSafe } from '@safe-global/utils/features/counterfactual/store/types'
 import type { TransactionOptions } from '@safe-global/types-kit'
-import { getTotalFeeFormatted } from '@safe-global/utils/hooks/useDefaultGasPrice'
 import useGasPrice from '@/hooks/useGasPrice'
 
 const useActivateAccount = (undeployedSafe: UndeployedSafe | undefined) => {
@@ -63,10 +60,7 @@ const useActivateAccount = (undeployedSafe: UndeployedSafe | undefined) => {
       }
     : { gasPrice: maxFeePerGas?.toString(), gasLimit: gasLimit?.toString() }
 
-  const totalFee = getTotalFeeFormatted(maxFeePerGas, gasLimit, chain)
-  const walletCanPay = useWalletCanPay({ gasLimit, maxFeePerGas })
-
-  return { options, totalFee, walletCanPay }
+  return { options }
 }
 
 const ActivateAccountFlow = () => {
@@ -80,7 +74,7 @@ const ActivateAccountFlow = () => {
   const undeployedSafe = useAppSelector((state) => selectUndeployedSafe(state, chainId, safeAddress))
   const { setTxFlow } = useContext(TxModalContext)
   const wallet = useWallet()
-  const { options, totalFee, walletCanPay } = useActivateAccount(undeployedSafe)
+  const { options } = useActivateAccount(undeployedSafe)
   const isWrongChain = useIsWrongChain()
 
   const undeployedSafeSetup = useMemo(
@@ -189,37 +183,12 @@ const ActivateAccountFlow = () => {
             </Grid>
           )}
 
-          <FeeTokenSettingsHint />
-          <Grid data-testid="network-fee-section" container spacing={3}>
-            <ReviewRow
-              name="Est. network fee"
-              value={
-                <>
-                  <NetworkFee totalFee={totalFee} isWaived={willRelay || isWrongChain} chain={chain} />
-
-                  {!willRelay && (
-                    <Typography variant="body2" color="text.secondary" mt={1}>
-                      {isWrongChain
-                        ? `Switch your connected wallet to ${chain?.chainName} to see the correct estimated network fee`
-                        : 'You will have to confirm a transaction with your connected wallet.'}
-                    </Typography>
-                  )}
-                </>
-              }
-            />
-          </Grid>
-
           {submitError && (
             <Box mt={1}>
               <ErrorMessage error={submitError}>Error submitting the transaction. Please try again.</ErrorMessage>
             </Box>
           )}
           {isWrongChain && <NetworkWarning />}
-          {!walletCanPay && !willRelay && (
-            <ErrorMessage>
-              Your connected wallet doesn&apos;t have enough funds to execute this transaction
-            </ErrorMessage>
-          )}
         </Box>
 
         <Divider sx={{ mx: -3, mt: 2, mb: 1 }} />

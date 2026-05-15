@@ -9,7 +9,6 @@ import { Receipt } from '@/components/tx/ConfirmTxDetails/Receipt'
 import DecodedData from '../TxData/DecodedData'
 import ColorCodedTxAccordion from '@/components/tx/ColorCodedTxAccordion'
 import { Box, Divider, Stack, Typography } from '@mui/material'
-import DecoderLinks from './DecoderLinks'
 import isEqual from 'lodash/isEqual'
 import Multisend from '../TxData/DecodedData/Multisend'
 import { isMultiSendCalldata } from '@/utils/transaction-calldata'
@@ -96,8 +95,6 @@ const Summary = ({
                 <Typography variant="subtitle2" fontWeight={700} mb={2}>
                   Advanced details
                 </Typography>
-
-                <DecoderLinks />
 
                 <Receipt
                   safeTxData={safeTxData}

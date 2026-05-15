@@ -1,7 +1,6 @@
 import { WC_PROJECT_ID } from '@/config/constants'
 import type { Chain } from '@safe-global/store/gateway/AUTO_GENERATED/chains'
 import type { InitOptions } from '@web3-onboard/core'
-import coinbaseModule from '@web3-onboard/coinbase'
 import injectedWalletModule from '@web3-onboard/injected-wallets'
 import walletConnect from '@web3-onboard/walletconnect'
 import pkModule from '@/services/private-key-module'
@@ -39,7 +38,6 @@ const walletConnectV2 = (chain: Chain) => {
 const WALLET_MODULES: Partial<{ [_key in WALLET_KEYS]: (chain: Chain) => WalletInit }> = {
   [WALLET_KEYS.INJECTED]: () => injectedWalletModule() as WalletInit,
   [WALLET_KEYS.WALLETCONNECT_V2]: (chain) => walletConnectV2(chain) as WalletInit,
-  [WALLET_KEYS.COINBASE]: () => coinbaseModule({ darkMode: prefersDarkMode() }) as WalletInit,
   [WALLET_KEYS.LEDGER]: () => ledgerModule(),
   [WALLET_KEYS.PK]: (chain) => pkModule(chain.chainId, chain.rpcUri) as WalletInit,
 }

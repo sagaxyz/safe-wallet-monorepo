@@ -194,6 +194,10 @@ export const OVERVIEW_EVENTS = {
     action: 'Hide earn banner',
     category: OVERVIEW_CATEGORY,
   },
+  SUGGESTIONS: {
+    action: 'Suggest any new Feature',
+    category: OVERVIEW_CATEGORY,
+  },
   OPEN_EURCV_BOOST: {
     action: 'Open EURCV boost from banner',
     category: OVERVIEW_CATEGORY,

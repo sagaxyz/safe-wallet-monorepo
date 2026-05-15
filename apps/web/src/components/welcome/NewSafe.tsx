@@ -32,7 +32,7 @@ const NewSafe = () => {
         <div className={css.loginContainer}>
           <WelcomeLogin />
         </div>
-        <Footer forceShow versionIcon={false} helpCenter={false} preferences={false} className={footerCss.footer} />
+        <Footer className={footerCss.footer} />
       </div>
 
       <div
