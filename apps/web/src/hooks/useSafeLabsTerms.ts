@@ -9,6 +9,10 @@ import { useIsOfficialHost } from '@/hooks/useIsOfficialHost'
 import type { OnboardAPI, WalletState } from '@web3-onboard/core'
 import { IS_PRODUCTION, IS_TEST_E2E } from '@/config/constants'
 
+const SAFE_LABS_HOSTS = /app\.safe\.global/
+
+const isSafeLabsHost = () => typeof window !== 'undefined' && SAFE_LABS_HOSTS.test(window.location.host)
+
 const TERMS_REDIRECT_EXCEPTIONS = [
   AppRoutes.safeLabsTerms,
   AppRoutes.privacy,
@@ -86,6 +90,7 @@ export const useSafeLabsTerms = (): UseSafeLabsTermsReturnType => {
 
     if (
       !isOfficialHost ||
+      !isSafeLabsHost() ||
       isFeatureDisabled ||
       !IS_PRODUCTION ||
       IS_TEST_E2E ||
@@ -113,7 +118,7 @@ export const useSafeLabsTerms = (): UseSafeLabsTermsReturnType => {
 
   useEffect(() => {
     const termsAccepted = hasAcceptedSafeLabsTerms()
-    if (!isOfficialHost || !onboard || isFeatureDisabled || !IS_PRODUCTION || IS_TEST_E2E || termsAccepted) {
+    if (!isOfficialHost || !isSafeLabsHost() || !onboard || isFeatureDisabled || !IS_PRODUCTION || IS_TEST_E2E || termsAccepted) {
       return
     }
 
@@ -138,7 +143,7 @@ export const useSafeLabsTerms = (): UseSafeLabsTermsReturnType => {
   return {
     isFeatureDisabled,
     hasAccepted: termsAccepted,
-    shouldBypassTermsCheck: !isOfficialHost || isFeatureDisabled || !IS_PRODUCTION || IS_TEST_E2E || termsAccepted,
+    shouldBypassTermsCheck: !isOfficialHost || !isSafeLabsHost() || isFeatureDisabled || !IS_PRODUCTION || IS_TEST_E2E || termsAccepted,
     shouldShowContent,
   }
 }

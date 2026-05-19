@@ -138,7 +138,7 @@ export enum SafeAppsName {
 
 // Legal
 export const IS_OFFICIAL_HOST = true
-export const OFFICIAL_HOSTS = /app\.safe\.global|.+\.5afe\.dev|localhost:3000|localhost:4000|localhost:6006/
+export const OFFICIAL_HOSTS = /app\.safe\.global|.+\.5afe\.dev|localhost:3000|localhost:4000|localhost:6006|safe\.saga\.xyz/
 export const IPFS_HOSTS = /app\.safe\.eth\.limo|app\.5afedev\.eth\.limo/
 export const BRAND_NAME = process.env.NEXT_PUBLIC_BRAND_NAME || 'Saga Safe'
 export const BRAND_LOGO = process.env.NEXT_PUBLIC_BRAND_LOGO || ''
