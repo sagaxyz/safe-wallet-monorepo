@@ -70,7 +70,7 @@ const SidebarFooter = (): ReactElement => {
               fontSize="small"
               sx={{ verticalAlign: 'middle', mx: 0.5 }}
             />
-            <Link href="https://protofire.io" sx={{ color: darkPalette.primary.main, textDecoration: 'none' }}>
+            <Link href="https://safe.protofire.io" sx={{ color: darkPalette.primary.main, textDecoration: 'none' }}>
               Protofire
             </Link>
           </Typography>

@@ -102,7 +102,7 @@ const Footer = ({ className = css.container }: { className?: string }): ReactEle
               fontSize="small"
               sx={{ verticalAlign: 'middle', mx: 0.5 }}
             />
-            <MUILink href="https://protofire.io" sx={{ color: darkPalette.primary.main, textDecoration: 'none' }}>
+            <MUILink href="https://safe.protofire.io" sx={{ color: darkPalette.primary.main, textDecoration: 'none' }}>
               Protofire
             </MUILink>
           </Typography>
