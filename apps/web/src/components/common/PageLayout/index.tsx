@@ -46,8 +46,9 @@ const PageLayout = ({ pathname, children }: { pathname: string; children: ReactE
           [css.mainNoHeader]: hideHeader,
         })}
       >
+        <SunsetBanner />
+
         <div className={css.content}>
-          <SunsetBanner />
           <SafeLoadingError>
             {!hideHeader && <Breadcrumbs />}
             {children}

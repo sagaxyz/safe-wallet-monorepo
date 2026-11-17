@@ -18,15 +18,17 @@ export const OZ_SAFE_UTILS_URL = 'https://safeutils.openzeppelin.com'
 export const PROTOFIRE_SAFE_UTILS_URL = 'https://safeutils.protofire.io'
 
 // Sunset banners per chain ID
-const CROSSFI_SUNSET_BANNER = {
-  title: 'CrossFi Safe Support Sunsetting',
-  description:
-    'Dear users, Support for Safe on CrossFi will end soon. Please withdraw your funds until April 17, 2029.',
+export type SunsetBanner = { title: string; description: string; linkLabel?: string; linkHref?: string }
+
+const SAGA_SUNSET_BANNER: SunsetBanner = {
+  title: 'Saga EVM is being sunset on November 23, 2026.',
+  description: 'This Safe interface will be discontinued on that date. Please withdraw or move your funds before then.',
+  linkLabel: 'Read more →',
+  linkHref: 'https://x.com/SagaAILabs/status/2103129920243200467',
 }
 
-export const SUNSET_BANNERS: Record<string, { title: string; description: string }> = {
-  '4158': CROSSFI_SUNSET_BANNER,
-  '4157': CROSSFI_SUNSET_BANNER,
+export const SUNSET_BANNERS: Record<string, SunsetBanner> = {
+  '5464': SAGA_SUNSET_BANNER,
 }
 
 // TODO: move to types
